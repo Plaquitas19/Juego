@@ -11,11 +11,12 @@ const TargetPractice = () => {
   const [target, setTarget] = useState(null); // Cambio de circle a target para mayor claridad
   const [level, setLevel] = useState(null);
   const [startTime, setStartTime] = useState(null);
+  const [notificationShown, setNotificationShown] = useState(false); // Nuevo estado para controlar la notificación
 
   // Función para obtener una posición aleatoria
   const getRandomPosition = () => {
-    const top = Math.floor(Math.random() * (window.innerHeight - 100)); // Evitar que el objetivo salga de la pantalla
-    const left = Math.floor(Math.random() * (window.innerWidth - 100)); // Evitar que el objetivo salga de la pantalla
+    const top = Math.floor(Math.random() * (window.innerHeight - 200)) + 100; // Limitar superior e inferior
+    const left = Math.floor(Math.random() * (window.innerWidth - 100)); // Evitar que el objetivo salga de los lados
     return { top, left };
   };
 
@@ -27,6 +28,7 @@ const TargetPractice = () => {
     setTimeLeft(30);
     setTimerActive(true);
     setStartTime(Date.now());
+    setNotificationShown(false); // Reiniciar la bandera al iniciar el juego
 
     // Configura el tiempo para el nivel (10, 5, 2 segundos)
     const intervalTime = level === 1 ? 10000 : level === 2 ? 5000 : 2000;
@@ -91,7 +93,7 @@ const TargetPractice = () => {
   }, [timeLeft, timerActive]);
 
   useEffect(() => {
-    if (timeLeft === 0 && reactionTime !== null) {
+    if (timeLeft === 0 && reactionTime !== null && !notificationShown) {
       toast(
         `¡Juego terminado! Tu puntuación es ${score} y tu tiempo de reacción promedio fue: ${reactionTime} ms`,
         {
@@ -99,8 +101,9 @@ const TargetPractice = () => {
           autoClose: 5000,
         }
       );
+      setNotificationShown(true); // Establecer la bandera para no mostrar otra notificación
     }
-  }, [timeLeft, reactionTime, score]);
+  }, [timeLeft, reactionTime, score, notificationShown]);
 
   // Función para regresar al inicio (volver a la pantalla de selección)
   const goHome = () => {
@@ -110,6 +113,7 @@ const TargetPractice = () => {
     setTimeLeft(30);
     setTimerActive(false);
     setTarget(null);
+    setNotificationShown(false); // Reiniciar la bandera de notificación cuando el jugador regrese al inicio
   };
 
   return (
