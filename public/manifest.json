@@ -1,0 +1,41 @@
+{
+  "short_name": "TargetPractice",
+  "name": "Juego de Reacción Rápida",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "screenshots": [
+    {
+      "src": "screenshots/screenshot1.png",
+      "sizes": "800x600",
+      "type": "image/png",
+      "form_factor": "wide",
+      "description": "Pantalla principal del juego de reacción rápida."
+    },
+    {
+      "src": "screenshots/screenshot2.png",
+      "sizes": "800x600",
+      "type": "image/png",
+      "form_factor": "wide",
+      "description": "En juego: Objetivos mostrando en la pantalla."
+    }
+  ]
+}
